@@ -12,4 +12,8 @@ const port = 3000
 
 app.get('/status', (req, res) => res.send({ message: 'The start of a Turney Heavy Industries' }))
 
+app.post('/register', (req, res) => {
+  res.send({ data: `${req.body.email} This user is registered` })
+})
+
 app.listen(port, () => console.log(`THI is listening on ${port}`))
