@@ -15,23 +15,23 @@
 </template>
 
 <script>
-import authenticationService from '../services/authenticationService'
-export default {
-  data() {
-    return {
-      email: '',
-      password: ''
-    }
-  },
-  methods: {
-    async register() {
-      await authenticationService.register({
-        email: this.email,
-        password: this.password
-      })
+  import authenticationService from '../services/authenticationService'
+  export default {
+    data() {
+      return {
+        email: '',
+        password: ''
+      }
+    },
+    methods: {
+      async register() {
+        await authenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+      }
     }
   }
-}
 </script>
 
 <style></style>

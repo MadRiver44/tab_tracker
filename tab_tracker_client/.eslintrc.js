@@ -4,6 +4,7 @@ module.exports = {
     node: true
   },
   extends: [
+    'prettier',
     'plugin:vue/essential',
     'plugin:prettier/recommended',
     '@vue/prettier',
@@ -12,6 +13,7 @@ module.exports = {
   parserOptions: {
     parser: 'babel-eslint'
   },
+  plugins:[ 'vue'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
@@ -20,8 +22,7 @@ module.exports = {
     {
       files: [
         '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
-        '**/node_modules/*.js'
+        '**/tests/unit/**/*.spec.{j,t}s?(x)'
       ],
       env: {
         jest: true
