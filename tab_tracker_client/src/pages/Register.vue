@@ -1,32 +1,31 @@
 <template>
-  <v-layout column>
-    <v-flex xs6 offset-xs3>
-      <div class="white elevation-2">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <input
-            type="email"
-            name="email"
-            placeholder="email"
-            v-model="email"
-          />
-          <br />
-          <input
-            type="password"
-            name="password"
-            placeholder="password"
-            v-model="password"
-          />
-          <br />
-          <div class="error" v-html="error" />
-          <br />
-          <v-btn class="cyan" @click="register">Submit</v-btn>
+  <v-container fill-height>
+    <v-col class="justify-center align-center" column>
+      <v-flex xs6 offset-xs3>
+        <div class="white elevation-2">
+          <v-toolbar flat dense class="cyan">
+            <v-toolbar-title>Register</v-toolbar-title>
+          </v-toolbar>
+          <div class="pl-4 pr-4 pt-2 pb-2">
+            <v-text-field label="Email" v-model="email" single-line
+              >Email</v-text-field
+            >
+            <br />
+            <v-text-field
+              v-model="password"
+              label="Password"
+              hint="At least 8 characters"
+              counter
+            ></v-text-field>
+            <br />
+            <div class="error" v-html="error" />
+            <br />
+            <v-btn class="cyan" @click="register">Submit</v-btn>
+          </div>
         </div>
-      </div>
-    </v-flex>
-  </v-layout>
+      </v-flex>
+    </v-col>
+  </v-container>
 </template>
 
 <script>
