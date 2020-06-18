@@ -14,8 +14,12 @@
             <v-text-field
               v-model="password"
               label="Password"
+              type="password"
+              clearable
+              clear-icon="x"
               hint="At least 8 characters"
               counter
+              autocomplete="password"
             ></v-text-field>
             <br />
             <div class="error" v-html="error" />
@@ -41,10 +45,12 @@
     methods: {
       async login() {
         try {
-          await authenticationService.login({
+          const response = await authenticationService.login({
             email: this.email,
             password: this.password
           })
+          this.$store.dispatch('setToken', response.data.token)
+          this.$store.dispatch('setUser', response.data.user)
         } catch (error) {
           this.error = error.response.data.error
         }

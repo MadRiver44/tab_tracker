@@ -7,16 +7,22 @@
             <v-toolbar-title>Register</v-toolbar-title>
           </v-toolbar>
           <div class="pl-4 pr-4 pt-2 pb-2">
-            <v-text-field label="Email" v-model="email" single-line
-              >Email</v-text-field
-            >
-            <br />
-            <v-text-field
-              v-model="password"
-              label="Password"
-              hint="At least 8 characters"
-              counter
-            ></v-text-field>
+            <form name="tab-tracker-form" autocomplete="off">
+              <v-text-field label="Email" v-model="email" single-line
+                >Email</v-text-field
+              >
+              <br />
+              <v-text-field
+                v-model="password"
+                label="Password"
+                type="password"
+                clearable
+                clear-icon="x"
+                hint="At least 8 characters"
+                counter
+                autocomplete="new-password"
+              ></v-text-field>
+            </form>
             <br />
             <div class="error" v-html="error" />
             <br />
@@ -41,10 +47,13 @@
     methods: {
       async register() {
         try {
-          await authenticationService.register({
+          const response = await authenticationService.register({
             email: this.email,
             password: this.password
           })
+          console.log(response)
+          this.$store.dispatch('setToken', response.data.token)
+          this.$store.dispatch('setUser', response.data.user)
         } catch (error) {
           this.error = error.response.data.error
         }

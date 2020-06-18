@@ -11,10 +11,22 @@
     </v-toolbar-items>
     <v-spacer></v-spacer>
     <v-toolbar-items>
-      <v-btn text @click="navigateTo({ name: 'Login' })">Login</v-btn>
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        text
+        @click="navigateTo({ name: 'Login' })"
+      >
+        Login</v-btn
+      >
     </v-toolbar-items>
     <v-toolbar-items>
-      <v-btn text @click="navigateTo({ name: 'Register' })">Sign up!</v-btn>
+      <v-btn
+        v-if="!$store.state.isUserLoggedIn"
+        text
+        @click="navigateTo({ name: 'Register' })"
+      >
+        Sign up!</v-btn
+      >
     </v-toolbar-items>
   </v-toolbar>
   <!-- </v-app-bar> -->
