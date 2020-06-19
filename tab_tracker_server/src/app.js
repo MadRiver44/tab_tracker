@@ -20,7 +20,7 @@ require('./routes')(app)
  * connects sequelize to the db, creates the tables, syncs all models to the database
  * once done, we start the server
  */
-sequelize.sync() // {force: true} to clear db
+sequelize.sync({ force: false }) // {force: true} to clear db
   .then(() => {
     app.listen(config.port, () => console.log(`THI is listening on ${config.port}`))
   })
