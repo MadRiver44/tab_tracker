@@ -2,10 +2,7 @@
   <v-container fill-height>
     <v-col class="justify-center align-center" column>
       <v-flex xs6 offset-xs3>
-        <div class="white elevation-2">
-          <v-toolbar flat dense class="cyan" dark>
-            <v-toolbar-title>Register</v-toolbar-title>
-          </v-toolbar>
+        <panel title="Register">
           <div class="pl-4 pr-4 pt-2 pb-2">
             <form name="tab-tracker-form" autocomplete="off">
               <v-text-field label="Email" v-model="email" single-line
@@ -28,42 +25,46 @@
             <br />
             <v-btn class="cyan" dark @click="register">Submit</v-btn>
           </div>
-        </div>
+        </panel>
       </v-flex>
     </v-col>
   </v-container>
 </template>
 
 <script>
-  import authenticationService from '../services/authenticationService'
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-        error: null
-      }
-    },
-    methods: {
-      async register() {
-        try {
-          const response = await authenticationService.register({
-            email: this.email,
-            password: this.password
-          })
-          console.log(response)
-          this.$store.dispatch('setToken', response.data.token)
-          this.$store.dispatch('setUser', response.data.user)
-        } catch (error) {
-          this.error = error.response.data.error
-        }
+import authenticationService from '../services/authenticationService'
+import Panel from '../components/Panel.vue'
+export default {
+  components: {
+    Panel
+  },
+  data() {
+    return {
+      email: '',
+      password: '',
+      error: null
+    }
+  },
+  methods: {
+    async register() {
+      try {
+        const response = await authenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+        console.log(response)
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+      } catch (error) {
+        this.error = error.response.data.error
       }
     }
   }
+}
 </script>
 
 <style>
-  .error {
-    color: red;
-  }
+.error {
+  color: red;
+}
 </style>
